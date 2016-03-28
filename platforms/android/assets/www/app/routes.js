@@ -2,15 +2,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $
     $httpProvider.interceptors.push('authInterceptorService');
 
     $stateProvider
-        .state('home', {
-            url: '/home',
-            templateUrl: "views/home/home.html",
-            controller: 'HomeCtrl'
-        })
+        .state('movies', {
+            url: '/movies',
+            templateUrl: "views/movies/movies-list.html",
+            controller: 'MovieslistCtrl'
+        })        
 
     // states end
     ;
 
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/movies");
 
 });

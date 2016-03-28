@@ -1,0 +1,25 @@
+<ion-modal-view title="Add movie">
+    
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Add movie</h1>
+        <button class="button button-clear icon ion-close" ng-click="closeModal('addMovie')"></button>
+    </ion-header-bar>
+
+<ion-content>
+
+      <form ng-submit="addMovie(movie)">
+        <div class="list">
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Title</span>
+            <input type="text" placeholder="E.g.: Pulp Fiction" ng-model="movie.title">
+        </label>
+        </div>
+        <div class="padding">
+          <button class="button button-positive" ng-click="addMovie(movie)">Submit movie</button>
+        </div>
+      </form>
+      
+    <div>
+    </div>
+</ion-content>
+</ion-modal-view>

@@ -1,0 +1,62 @@
+<ion-view>
+
+    <ion-nav-buttons class="nav-positive">
+        <a class="button button-clear icon ion-help" ng-click="openModal('wizard')"></a>
+        <h1 class="title">Movies list</h1>
+        <button class="button button-clear icon ion-android-add-circle" ng-click="openModal('addMovie')"></button>
+    </ion-nav-buttons>
+
+    <div class="bar bar-subheader bar-positive">
+        <div class="button-bar" ng-init="orderByString='title'">
+            <a class="button" ng-click="orderByString='+title'">A..Z</a>
+            <a class="button" ng-click="orderByString='-release_date'"="">Newest</a>
+            <a class="button" ng-click="orderByString='+vote_averadge'">Top rated</a>
+        </div>
+    </div>
+
+    <ion-content>
+        <div class="bar bar-subheader item-input-inset">
+            <label class="item-input-wrapper">
+                <i class="icon ion-search"></i>
+                <input type="search" ng-model="searchString" ng-init="searchString=''" placeholder="Search">
+                <!-- <input type="search" ng-model="searchString.title" placeholder="search string"> -->
+            </label>
+        </div>
+
+        <ion-list>
+            <ion-item ng-repeat="movie in data.movies | filter: {title:searchString} | orderBy: orderByString ">
+                {{movie.title}}
+                <ion-option-button class="button-assertive" ng-click="removeMovie(movie.imdbID)">Remove</ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+
+    <script id="movie-add-modal.html" type="text/ng-template">
+        <ion-modal-view title="Add movie">
+
+            <ion-header-bar class="bar-positive">
+                <h1 class="title">Add movie</h1>
+                <button class="button button-clear icon ion-close" ng-click="closeModal('addMovie')"></button>
+            </ion-header-bar>
+
+            <ion-content>
+
+                <form ng-submit="addMovie(movie)">
+                    <div class="list">
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Title</span>
+                            <input type="text" placeholder="E.g.: Pulp Fiction" ng-model="movie.title">
+                        </label>
+                    </div>
+                    <div class="padding">
+                        <button class="button button-positive" ng-click="addMovie(movie)">Submit movie</button>
+                    </div>
+                </form>
+
+                <div>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+
+</ion-view>

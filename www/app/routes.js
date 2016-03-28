@@ -6,7 +6,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $
             url: '/movies',
             templateUrl: "views/movies/movies-list.html",
             controller: 'MovieslistCtrl'
-        })
+        })        
 
     // states end
     ;
