@@ -1,0 +1,33 @@
+<ion-view title="Movie list">
+    
+    <ion-nav-buttons side="left">
+      <button class="button button-clear icon ion-help"></button>
+    </ion-nav-buttons>        
+    
+    <ion-nav-buttons side="right">
+      <button class="button button-clear icon ion-ios-plus-outline"></button>
+    </ion-nav-buttons>
+    
+    <ion-content>
+        <div class="button-bar bar-positive" ng-init="orderByString='title'">
+            <a class="button" ng-click="orderByString='+title'">A..Z</a>
+            <a class="button" ng-click="orderByString='-release_date'"="">Newest</a>
+            <a class="button" ng-click="orderByString='+vote_averadge'">Top rated</a>
+        </div>
+
+        <div class="item-input-insert">
+            <div class="item-input-wrapper">
+                <i class="icon ion-search"></i>
+                <input type="search" ng-model="searchString" ng-init="searchString=''" placeholder="Search">
+                <!-- <input type="search" ng-model="searchString.title" placeholder="search string"> -->
+            </div>
+        </div>
+
+        <ion-list>
+            <ion-item ng-repeat="movie in data.movies | filter: {title:searchString} | orderBy: orderByString ">
+                {{movie.title}}
+                <ion-option-button class="button-assertive" ng-click="removeMovie(movie.imdbID)">Remove</ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
